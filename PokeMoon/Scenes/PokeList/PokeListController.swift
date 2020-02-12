@@ -44,6 +44,10 @@ final class PokeListController: UIViewController, PokeListDisplayLogic {
     }
     
     func setup(){
+        #warning("viewcontroller should only now about interactor and the router other components needs to be initialized within eachother presenter inside the interactor and presenters delegate which is in this case the viewcontroller should be passed as an argument through the initializer of the interactor to init the presenter")
+        // check https://github.com/Andrei-Popilian/VIP_Design_Xcode_Template
+        // completion handler version is kind of similar to your implementation if you want to check as well 
+        // https://github.com/onurhuseyincantay/Clean-Swift-App
         let viewController = self
         let interactor = PokeListInteractor()
         let presenter = PokeListPresenter()
