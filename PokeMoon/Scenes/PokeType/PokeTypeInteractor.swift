@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+protocol PokeTypeBusinessLogic { }
+
+protocol PokeTypeDataStore {
+    var type: [String]? { get set }
+}
+
+final class PokeTypeInteractor: PokeTypeBusinessLogic, PokeTypeDataStore {
+    
+    var type: [String]?
+    
+    var presenter: PokeTypePresentationLogic?
+}

@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol PokeWeaknessPresentationLogic {}
+
+final class PokeWeaknessPresenter: PokeWeaknessPresentationLogic {
+    var controller : PokeWeaknessDisplayLogic?
+}

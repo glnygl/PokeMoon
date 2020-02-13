@@ -72,7 +72,10 @@ final class PokeDetailController: UIViewController, PokeDetailDisplayLogic {
         
         
         let pokeTypeVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PokeTypeController") as! PokeTypeController
+        pokeTypeVC.interactor?.type = self.interactor?.pokemon?.type
         let pokeWeakVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PokeWeaknessController") as! PokeWeaknessController
+        pokeWeakVC.interactor?.weakness = self.interactor?.pokemon?.weaknesses
+        
         let viewControllers = [pokeTypeVC, pokeWeakVC]
         let widthSize = CGFloat(viewControllers.count) *  UIScreen.main.bounds.width
         let size = CGSize(width: widthSize, height: 0)

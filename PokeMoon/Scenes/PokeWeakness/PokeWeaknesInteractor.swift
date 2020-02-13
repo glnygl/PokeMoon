@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+protocol PokeWeaknesBusinessLogic {}
+protocol PokeWeaknesDataSource {
+    var weakness: [String]? {get set}
+}
+
+final class PokeWeaknesInteractor: PokeWeaknesBusinessLogic, PokeWeaknesDataSource {
+    var weakness: [String]?
+    
+    var presenter: PokeWeaknessPresentationLogic?
+    
+}

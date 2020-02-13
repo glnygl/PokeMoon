@@ -8,13 +8,17 @@
 
 import UIKit
 
-class PokeWeaknessController: UIViewController {
+protocol PokeWeaknessDisplayLogic {}
+
+class PokeWeaknessController: UIViewController, PokeWeaknessDisplayLogic {
     
     @IBOutlet weak var tableView: UITableView!{
     didSet {
         tableView.dataSource = self
     }
     }
+    
+    var interactor: (PokeWeaknesBusinessLogic & PokeWeaknesDataSource)?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
@@ -29,7 +33,12 @@ class PokeWeaknessController: UIViewController {
     }
     
     func setup() {
-        
+        let viewController = self
+        let interactor = PokeWeaknesInteractor()
+        let presenter = PokeWeaknessPresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.controller = viewController
     }
 
     override func viewDidLoad() {
@@ -39,12 +48,17 @@ class PokeWeaknessController: UIViewController {
 
 extension PokeWeaknessController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return interactor?.weakness?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokeWeaknessCell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PokeWeaknessTableCell", for: indexPath) as? PokeWeaknessTableCell {
+            if let weakness = interactor?.weakness?[indexPath.row]{
+                cell.weaknessLabel.text = weakness
+            }
            return cell
+        }
+        return UITableViewCell()
     }
     
     

@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol PokeTypePresentationLogic {}
+
+final class PokeTypePresenter: PokeTypePresentationLogic {
+     var controller: PokeTypeDisplayLogic?
+}
