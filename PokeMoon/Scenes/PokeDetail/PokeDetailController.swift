@@ -84,13 +84,12 @@ final class PokeDetailController: UIViewController, PokeDetailDisplayLogic {
         for childController in viewControllers {
             let x = CGFloat(pageIndex) *  UIScreen.main.bounds.width
             self.addChild(childController)
-            let frameVC = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            let frameVC = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: scrollView.frame.size.height)
             childController.view.frame = frameVC
             childController.view.frame.origin.x = x
             scrollView.addSubview(childController.view)
             pageIndex += 1
         }
-
     }
     
     func displayPokemon(viewModel: PokeDetailScene.Show.ViewModel) {
